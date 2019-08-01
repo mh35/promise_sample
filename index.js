@@ -34,4 +34,22 @@ document.addEventListener('DOMContentLoaded', function () {
         el.innerText = r;
         document.getElementById('fetch_out').appendChild(el);
     });
+    let awf = async function () {
+        try {
+            let r = await fetch('b.json');
+            let j = await r.json();
+            if (!j || !j.q) {
+                throw 'Error!';
+            }
+            document.getElementById('await_out').innerText = j.q;
+            return Promise.resolve(j.q);
+        } catch (e) {
+            let el = document.createElement('span');
+            el.style.color = 'red';
+            el.innerText = e;
+            document.getElementById('await_out').appendChild(el);
+            return Promise.reject(e);
+        }
+    };
+    awf();
 });
