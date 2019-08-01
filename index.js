@@ -22,10 +22,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     let fpr = fetch('c.json');
     fpr.then(function (b) {
-        if (!b.json || !b.json.q) {
+        return b.json();
+    }).then(function (j) {
+        if (!j || !j.q) {
             return Promise.reject('Error!');
         }
-        document.getElementById('fetch_out') = b.json.q;
+        document.getElementById('fetch_out') = j.q;
     }).catch(function (r) {
         let el = document.createElement('span');
         el.style.color = 'red';
