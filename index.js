@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!j || !j.q) {
             return Promise.reject('Error!');
         }
-        document.getElementById('fetch_out') = j.q;
+        document.getElementById('fetch_out').innerText = j.q;
     }).catch(function (r) {
         let el = document.createElement('span');
         el.style.color = 'red';
